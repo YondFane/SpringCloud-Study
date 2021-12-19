@@ -18,9 +18,9 @@
         <spring.boot.version>2.6.1</spring.boot.version>
         <spring.cloud.version>2021.0.0</spring.cloud.version>
         <spring.cloud.alibaba.version>2.2.6.RELEASE</spring.cloud.alibaba.version>
-        <mysql.version>xx</mysql.version>
-        <druid.version>xx</druid.version>
-        <mybatis.version>xx</mybatis.version>
+        <mysql.version>5.1.47</mysql.version>
+        <druid.version>1.2.8</druid.version>
+        <mybatis.version>2.2.0</mybatis.version>
         <!--spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>-->
@@ -51,6 +51,25 @@
                 <version>${spring.cloud.alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--MyBatis-->
+            <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
