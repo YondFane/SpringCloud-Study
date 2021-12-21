@@ -5,8 +5,12 @@ import com.yfan.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import com.yfan.springcloud.service.PaymentService;
+
+import java.util.List;
 
 /*
  * @author YFAN
@@ -21,6 +25,9 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverport;
+
+    @Autowired
+    DiscoveryClient discoveryClient;
 
     @PostMapping("/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
@@ -42,5 +49,18 @@ public class PaymentController {
         } else {
             return new CommonResult(444, "查询失败，没有对应的记录！:" + serverport, null);
         }
+    }
+
+    @GetMapping("payment/discovery")
+    public Object discovery() {
+        // 获取所有服务信息
+        List<String> services = discoveryClient.getServices();
+        services.forEach(o->{
+            log.info("discovery()-service:{}", o);
+        });
+        // 获取cloud-payment-service服务信息
+        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+        instances.forEach(o->log.info("discovery()-cloud-payment-service:{}",o));
+        return discoveryClient;
     }
 }
