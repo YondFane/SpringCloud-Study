@@ -16,3 +16,12 @@ eureka:
   instance:
     prefer-ip-address: true # 开启使用ip地址注册
     instance-id: ${spring.cloud.client.ip-address}:${server.port} #ip:port
+
+##负载均衡策略
+## service-provider 为调用服务的名称
+#cloud-payment-service:
+#  ribbon:
+#    # 指定随机策略类
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    # 指定具体服务列表
+#    listOfServers: http://localhost:8001,http://localhost:8002

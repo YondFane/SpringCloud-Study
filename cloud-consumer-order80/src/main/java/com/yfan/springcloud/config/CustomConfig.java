@@ -13,4 +13,10 @@ public class CustomConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+    // 用于测试Ribbon的负载均衡策略
+    @Bean
+    public RestTemplate restTemplateByRibbon() {
+        return new RestTemplate();
+    }
 }
