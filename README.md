@@ -80,6 +80,14 @@
 
 
 
+### 3、服务降级
+
+#### 3.1 Hystrix
+
+- cloud-eureka-server-stand-alone7001
+- cloud-provider-hystrix-payment8001
+- cloud-consumer-feign-hystrix-order80
+
 
 
 
