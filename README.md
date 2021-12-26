@@ -61,6 +61,40 @@
 
 
 
+#### 2.2 OpenFeign服务调用
+
+**Eureka集群**
+
+- cloud-eureka-server7001
+- cloud-eureka-server7002
+- cloud-eureka-server7003
+
+**服务集群**
+
+- cloud-provider-payment8001
+- cloud-provider-payment8002
+
+**消费者**
+
+- cloud-consumer-feign-order80
 
 
-## 111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

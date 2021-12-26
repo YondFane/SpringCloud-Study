@@ -63,4 +63,16 @@ public class PaymentController {
         instances.forEach(o->log.info("discovery()-cloud-payment-service:{}",o));
         return discoveryClient;
     }
+
+    // 测试OpenFeign超时
+    @GetMapping("/payment/feiginTimeout")
+    public String feiginTimeout() {
+        try {
+            // 休眠
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
+        return "feiginTimeout执行完成:" + serverport;
+    }
 }

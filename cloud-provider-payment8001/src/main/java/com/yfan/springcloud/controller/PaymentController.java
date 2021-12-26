@@ -50,7 +50,7 @@ public class PaymentController {
             return new CommonResult(444, "查询失败，没有对应的记录！:" + serverport, null);
         }
     }
-    @GetMapping("payment/discovery")
+    @GetMapping("/payment/discovery")
     public Object discovery() {
         // 获取所有服务信息
         List<String> services = discoveryClient.getServices();
@@ -61,5 +61,17 @@ public class PaymentController {
         List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
         instances.forEach(o->log.info("discovery()-cloud-payment-service:{}",o));
         return discoveryClient;
+    }
+
+    // 测试OpenFeign超时
+    @GetMapping("/payment/feiginTimeout")
+    public String feiginTimeout() {
+        try {
+            // 休眠
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
+        return "feiginTimeout执行完成:" + serverport;
     }
 }
