@@ -1,5 +1,6 @@
 package com.yfan.springcloud.service.impl;
 
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.yfan.springcloud.service.PaymentService;
@@ -14,6 +15,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
+// 定义全局fallback方法
+//@DefaultProperties(defaultFallback = "paymentGlobalHandler")
 public class PaymentServiceImpl implements PaymentService {
     /*
      * 测试Hystrix
@@ -36,9 +39,11 @@ public class PaymentServiceImpl implements PaymentService {
             // 调用超时时间，超时后调用fallbackMethod指定的方法
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
     })
+//    @HystrixCommand
     @Override
     public String paymentInfoTimeOut(Long id) {
         long time = 3;
+//        int i = 1/0;//测试fallback
         try {
             // 休眠
             TimeUnit.SECONDS.sleep(time);
@@ -52,5 +57,15 @@ public class PaymentServiceImpl implements PaymentService {
     public String paymentInfoTimeOutHandler(Long id) {
         return "线程池：" + Thread.currentThread().getName() + " paymentInfoTimeOutHandler,id: "
                 + id + "/t系统繁忙，请稍后再试";
+    }
+
+    /*
+     * 全局处理方法
+     * @author YFAN
+     * @date 2021/12/26/026
+     */
+    public String paymentGlobalHandler() {
+        return "线程池：" + Thread.currentThread().getName() + " paymentGlobalHandler, "
+                 + "/t系统繁忙，请稍后再试";
     }
 }

@@ -7,15 +7,13 @@
 
 ![image-20211226162255990](../NoteFile/image-20211226162255990.png)
 
-浏览器访问**服务端**/payment/hystrix/ok/1或/payment/hystrix/timeout/1响应缓慢。
+浏览器访问**服务端**/payment/hystrix/ok/1或/payment/hystrix/timeout/1，**响应缓慢**。
 
 ## 解决方法
 
 ### 1、服务降级
 
-#### 服务端
-
-业务类启用@HystrixCommand报异常后处理
+#### 1.1 服务端-业务类启用@HystrixCommand报异常后处理
 
 ```java
     @HystrixCommand(fallbackMethod = "paymentInfoTimeOutHandler", commandProperties = {
@@ -43,9 +41,7 @@
 
 **低版本的Hystrix需要在启动类加@EnableCircuitBreaker注解**
 
-#### 客户端
-
-控制类启用@HystrixCommand报异常后处理
+#### 1.2 客户端-控制类启用@HystrixCommand报异常后处理
 
 ```java
     @HystrixCommand(fallbackMethod = "paymentInfoTimeOutHandler", commandProperties = {
@@ -65,11 +61,55 @@
     }
 ```
 
+#### **1.3 全局fallback处理**
 
+@DefaultProperties配置全局处理fallback方法
 
+**@HystrixCommand如果配置fallbackMethod则执行当前fallbackMethod，不执行全局fallback**
 
+```
+// 定义全局fallback方法
+@DefaultProperties(defaultFallback = "paymentGlobalHandler")
+public class PaymentServiceImpl implements PaymentService {
+...
+...
+...
+	  // @HystrixCommand如果配置fallbackMethod则执行当前fallbackMethod
+//    @HystrixCommand(fallbackMethod = "paymentInfoTimeOutHandler", commandProperties = {
+//            // 调用超时时间，超时后调用fallbackMethod指定的方法
+//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+//    })
+    @HystrixCommand
+    @Override
+    public String paymentInfoTimeOut(Long id) {
+        long time = 3;
+        int i = 1/0;
+        try {
+            // 休眠
+            TimeUnit.SECONDS.sleep(time);
+        } catch (InterruptedException e) {
+            log.info(e.getMessage());
+        }
+        return "线程池：" + Thread.currentThread().getName() + " paymentInfoTimeOut,id: " + id
+                + "\t耗时" + time + "秒";
+    }
+    // 调用超时处理方法
+    public String paymentInfoTimeOutHandler(Long id) {
+        return "线程池：" + Thread.currentThread().getName() + " paymentInfoTimeOutHandler,id: "
+                + id + "/t系统繁忙，请稍后再试";
+    }
 
-
+    /*
+     * 全局处理方法
+     * @author YFAN
+     * @date 2021/12/26/026
+     */
+    public String paymentGlobalHandler() {
+        return "线程池：" + Thread.currentThread().getName() + " paymentGlobalHandler, "
+                 + "/t系统繁忙，请稍后再试";
+    }
+}
+```
 
 
 
