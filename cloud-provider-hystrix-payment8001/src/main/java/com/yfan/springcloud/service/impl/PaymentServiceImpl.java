@@ -1,11 +1,13 @@
 package com.yfan.springcloud.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.yfan.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.concurrent.TimeUnit;
 
@@ -67,5 +69,33 @@ public class PaymentServiceImpl implements PaymentService {
     public String paymentGlobalHandler() {
         return "线程池：" + Thread.currentThread().getName() + " paymentGlobalHandler, "
                  + "/t系统繁忙，请稍后再试";
+    }
+
+    /*
+     * 服务熔断
+     * 10000ms内请求次数达到10次且超过60%失败触发断路器
+     * @author YFAN
+     * @date 2021/12/27/027
+     */
+    @HystrixCommand(fallbackMethod = "paymentCircuitBreakerFallback", commandProperties = {
+            // 开启断路器
+            @HystrixProperty(name="circuitBreaker.enabled", value = "true"),
+            // 请求次数
+            @HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value = "10"),
+            // 时间窗口期
+            @HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+            // 错误百分比阈值(%)
+            @HystrixProperty(name="circuitBreaker.errorThresholdPercentage", value = "60"),
+    })
+    public String paymentCircuitBreaker(Long id) {
+        if (id < 0) {
+            throw new RuntimeException("-----id不能为负数------");
+        }
+        String uuid = IdUtil.simpleUUID();
+        return Thread.currentThread().getName() + "\t调用成功\tuuid:" + uuid;
+    }
+    public String paymentCircuitBreakerFallback(Long id) {
+        log.info("paymentCircuitBreakerFallback-id:{}",id);
+        return "-----id不能为负数------请稍后再试------";
     }
 }

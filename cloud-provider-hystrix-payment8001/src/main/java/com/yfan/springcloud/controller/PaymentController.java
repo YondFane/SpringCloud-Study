@@ -40,4 +40,16 @@ public class PaymentController {
         return result;
     }
 
+    /*
+     * 服务熔断
+     * @author YFAN
+     * @date 2021/12/27/027
+     */
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Long id) {
+        String result = paymentService.paymentCircuitBreaker(id);
+        log.info("paymentService---paymentCircuitBreaker()---result:{}", result);
+        return result;
+    }
+
 }
