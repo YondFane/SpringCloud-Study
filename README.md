@@ -90,13 +90,30 @@
 
 
 
+### 4、服务网关
 
+- 反向代理
+- 鉴权
+- 流量控制
+- 熔断
+- 日志监控
+- ......
 
+![image-20211228230833197](./NoteFile/image-20211228230833197.png)
 
+#### 4.1 Zuul
 
+已经过时不再使用，已被Gateway替代。
 
+#### 4.2 Gateway
 
+GateWay是SpringCloud团队研发的，基于异步非阻塞模型上进行开发的，性能不需要担心。
 
+项目：
+
+- cloud-eureka-server-stand-alone7001
+- cloud-provider-stand-alone-payment8001
+- cloud-gateway-gateway9527
 
 
 
