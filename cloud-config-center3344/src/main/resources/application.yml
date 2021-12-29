@@ -1,0 +1,23 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          # 访问http://localhost:3344/YondFane/SpringCloud-Study/main/config-dev.yml
+          # 访问http://localhost:3344/config-dev.yml 与上面等效
+          # http://localhost:3344/config/dev/main
+          uri: https://gitee.com/YondFane/SpringCloud-Study #git@github.com:YondFane/SpringCloud-Study.git # github的git仓库名字
+          ## 搜索目录
+          search-paths:
+            - ProjectConfig
+          default-label: main #分支
+      label: main
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka

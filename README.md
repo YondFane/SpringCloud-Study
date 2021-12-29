@@ -120,9 +120,27 @@ GateWay是SpringCloud团队研发的，基于异步非阻塞模型上进行开�
 
 
 
+### 5、服务配置
+
+​		微服务意味着要将单体应用中的业务拆分成一个个子服务，每个子服务的粒度相对较小，因此系统中会出现大量的服务。由于每个服务都需要必要的配置信息才能运行（例如：application.yml），所以一套集中式的、动态的配置管理设置是必不可少的。
+
+#### 5.1 Spring Cloud Config
+
+**[Github地址：spring-cloud/spring-cloud-config](https://github.com/spring-cloud/spring-cloud-config)**
+
+**[官网：Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)**
+
+​		Spring Cloud Config为微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环境提供了一个中心化的外部配置。
 
 
 
+
+
+
+
+
+
+### 6、服务总线
 
 
 
