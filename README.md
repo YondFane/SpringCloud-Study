@@ -111,8 +111,11 @@ GateWay是SpringCloud团队研发的，基于异步非阻塞模型上进行开�
 
 项目：
 
-- cloud-eureka-server-stand-alone7001
-- cloud-provider-stand-alone-payment8001
+- cloud-eureka-server7001
+- cloud-eureka-server7002
+- cloud-eureka-server7003
+- cloud-provider-payment8001
+- cloud-provider-payment8002
 - cloud-gateway-gateway9527
 
 
