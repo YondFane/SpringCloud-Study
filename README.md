@@ -132,7 +132,11 @@ GateWay是SpringCloud团队研发的，基于异步非阻塞模型上进行开�
 
 ​		Spring Cloud Config为微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环境提供了一个中心化的外部配置。
 
+项目：
 
+- cloud-eureka-server-stand-alone7001
+- cloud-config-center3344
+- cloud-config-client3355
 
 
 
@@ -142,5 +146,13 @@ GateWay是SpringCloud团队研发的，基于异步非阻塞模型上进行开�
 
 ### 6、服务总线
 
+#### 6.1 Spring Cloud Bus
 
+​		Spring Cloud Bus能管理和传播分布式系统间的消息，就像一个分布式执行器，可用于广播状态更改、时间推送等，也可以当作微服务间的通信通道。仅支持两种消息代理：RabbitMQ和Kafka。
 
+项目：
+
+- cloud-eureka-server-stand-alone7001
+- cloud-config-center3344
+- cloud-config-client3355
+- cloud-config-client3366

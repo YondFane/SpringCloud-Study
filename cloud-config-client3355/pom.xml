@@ -16,6 +16,10 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
         <!-- 不引入此依赖bootstrap.yml不生效 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -1,5 +1,5 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
@@ -13,7 +13,7 @@ spring:
       uri: http://localhost:3344 #配置中心地址
   # rabbitmq配置
   rabbitmq:
-    host: localhost # localhost
+    host: localhost #localhost
     port: 5672
     username: admin
     password: admin
