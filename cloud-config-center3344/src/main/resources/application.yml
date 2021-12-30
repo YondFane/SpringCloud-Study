@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-config-center
+    name: cloud-config-client
   cloud:
     config:
       server:
@@ -17,6 +17,8 @@ spring:
             - ProjectConfig
           default-label: main #分支
       label: main
+
+
 eureka:
   client:
     service-url:
