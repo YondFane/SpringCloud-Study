@@ -53,7 +53,21 @@
 - cloud-provider-payment8005
 - cloud-consumerconsul-order80
 
+#### 1.4 Nacos Discovery服务注册与发现（默认AP，可切换到CP）
 
+**[Nacos官网](https://nacos.io/zh-cn/docs/quick-start.html)**
+
+项目：
+
+- cloud-alibaba-provider-payment9001
+- cloud-alibaba-provider-payment9002
+- cloud-alibaba-consumer-nacos-order80
+
+**[Nacos集群部署说明](https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html)**
+
+![deployDnsVipMode.jpg](https://nacos.io/img/deployDnsVipMode.jpg)
+
+Nacos自带内置数据库derby，如果需要配置Nacos集群，需要保持数据一致性，使用的是MySQL数据库。
 
 ### 2、服务调用
 
@@ -138,9 +152,13 @@ GateWay是SpringCloud团队研发的，基于异步非阻塞模型上进行开�
 - cloud-config-center3344
 - cloud-config-client3355
 
+#### 5.2 Nacos Config
 
+**[Nacos官网](https://nacos.io/zh-cn/docs/quick-start.html)**
 
+项目：
 
+- cloud-alibaba-config-client3377
 
 
 
