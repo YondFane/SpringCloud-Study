@@ -102,7 +102,19 @@ Nacos自带内置数据库derby，如果需要配置Nacos集群，需要保持�
 - cloud-provider-hystrix-payment8001
 - cloud-consumer-feign-hystrix-order80
 
+#### 3.2 Sentinel
 
+[介绍 · alibaba/Sentinel Wiki (github.com)](https://github.com/alibaba/Sentinel/wiki/介绍)
+
+[Sentinel官网](https://sentinelguard.io/zh-cn/index.html)
+
+项目：
+
+- cloud-alibaba-sentinel-service8401
+
+
+
+![image-20220105232928764](./NoteFile/image-20220105232928764.png)
 
 ### 4、服务网关
 
