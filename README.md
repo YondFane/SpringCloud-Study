@@ -111,6 +111,9 @@ Nacos自带内置数据库derby，如果需要配置Nacos集群，需要保持�
 项目：
 
 - cloud-alibaba-sentinel-service8401
+- cloud-alibaba-consumer-nacos-order90
+- cloud-alibaba-provider-payment9003
+- cloud-alibaba-provider-payment9004
 
 
 
