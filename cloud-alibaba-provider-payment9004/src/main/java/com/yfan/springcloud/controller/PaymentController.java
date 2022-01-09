@@ -20,4 +20,12 @@ public class PaymentController {
     public String getPayment(@PathVariable("id") Integer id) {
         return "payment-getPayment serverport:"+serverport+"\tid:"+id;
     }
+
+    @GetMapping("/payment/openfeign/get/{id}")
+    public String getPayment2(@PathVariable("id") Integer id) {
+        if (id == 0) {
+            throw new IllegalArgumentException("IllegalArgumentException异常,payment中ID不能为0");
+        }
+        return "payment-openfeignTest-getPayment2 serverport:"+serverport+"\tid:"+id;
+    }
 }
