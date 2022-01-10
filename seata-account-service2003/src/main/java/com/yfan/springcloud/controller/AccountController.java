@@ -21,7 +21,7 @@ public class AccountController {
     private AccountService accountService;
 
     /*
-     * 扣减库存
+     * 扣减账户余额
      * @author YFAN
      * @date 2022/1/10/010
      * @param  * @param userId
