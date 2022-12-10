@@ -1,9 +1,0 @@
-server:
-  port: 8004
-spring:
-  application:
-    name: cloud-provider-payment
-  # 注册进zookeeper
-  cloud:
-    zookeeper:
-      connect-string: localhost:2181 #连接本地的zookeeper, 如果是zookeeper集群这里地址用逗号隔开
